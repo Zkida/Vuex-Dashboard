@@ -2,13 +2,10 @@
   <c-flex w="100%">
     <nav
       v-chakra
-      w="100%"
-      maxW="1200px"
-      mx="auto"
       display="flex"
       alignItems="center"
       justify-content="space-between"
-      class="site-nav"
+      class="site-nav container"
     >
       <div class="app-logo">
         <app-logo />
@@ -18,7 +15,11 @@
           <li><a href="#">Inicio</a></li>
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Cómo funciona</a></li>
-          <li><a class="primary-button" href="#">Iniciar sesión</a></li>
+          <li>
+            <nuxt-link to="/login" class="primary-button"
+              >Iniciar sesión</nuxt-link
+            >
+          </li>
         </ul>
       </div>
     </nav>

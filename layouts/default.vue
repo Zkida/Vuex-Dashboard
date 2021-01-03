@@ -8,6 +8,7 @@
           <CBox as="main">
             <Nuxt />
           </CBox>
+          <app-footer />
         </CBox>
       </CColorModeProvider>
     </CThemeProvider>
@@ -20,7 +21,8 @@ import {
   CReset,
   CBox,
 } from '@chakra-ui/vue'
-import AppNav from '@/components/layout/AppNav'
+import AppNav from '@/components/AppNav'
+import AppFooter from '@/components/AppFooter'
 export default {
   name: 'App',
   components: {

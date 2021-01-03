@@ -1,8 +1,8 @@
 <template>
-  <div v-chakra w="100%" maxW="1200px" mx="auto">
+  <div class="container">
     <c-flex alignItems="center" class="home-hero">
       <c-flex w="60%" flexDirection="column">
-        <h1 v-chakra fontSize="50px" fontWeight="bold" mb="4">
+        <h1 v-chakra fontSize="48px" fontWeight="bold" mb="4">
           El mundo esta cambiando. Ofrece una
           <span v-chakra color="brand.primary"
             >nueva experiencia a tus clientes.</span
