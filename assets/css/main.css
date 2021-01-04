@@ -192,3 +192,8 @@ footer h6 {
   -moz-transition: 0.2s;
   transition: 0.2s;
 }
+
+.error {
+  padding: 5px 0;
+  color: #dd3b4b;
+}

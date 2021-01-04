@@ -27,6 +27,7 @@
             <c-input
               type="email"
               id="email"
+              autocomplete="username"
               aria-describedby="email-helper-text"
             />
           </c-form-control>
@@ -35,11 +36,12 @@
             <c-input
               type="password"
               id="password"
+              autocomplete="current-password"
               aria-describedby="password-helper-text"
             />
           </c-form-control>
           <c-form-control>
-            <c-button type="submit" width="100%" size="lg">
+            <c-button type="submit" color="gray.600" width="100%" size="lg">
               Registrarse
             </c-button>
           </c-form-control>
@@ -47,7 +49,9 @@
       </c-box>
     </c-box>
     <c-box mt="1rem" textAlign="center">
-      <nuxt-link to="/login">Ya tiene una cuenta?</nuxt-link>
+      <c-link as="nuxt-link" color="brand.primary" to="/login"
+        >Ya tiene una cuenta?</c-link
+      >
     </c-box>
   </c-flex>
 </template>

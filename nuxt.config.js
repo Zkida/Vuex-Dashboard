@@ -22,7 +22,7 @@ export default {
   css: ['@/assets/css/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/vuelidate'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -41,7 +41,10 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8000',
+    credentials: true,
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
