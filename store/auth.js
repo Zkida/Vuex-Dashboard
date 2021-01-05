@@ -23,7 +23,6 @@ export const getters = {
 
 export const actions = {
   async login({ dispatch }, credentials) {
-    console.log(credentials)
     await this.$axios.get('/sanctum/csrf-cookie')
     await this.$axios.post('/api/login', credentials)
 
@@ -40,7 +39,6 @@ export const actions = {
       })
       .catch(() => {
         // not auth
-        console.log('error')
         commit('SET_AUTHENTICATED', false)
         commit('SET_USER', null)
       })

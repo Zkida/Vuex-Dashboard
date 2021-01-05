@@ -94,13 +94,14 @@ export default {
     ...mapActions({
       loginAction: 'auth/login',
     }),
-    login() {
+    async login() {
       this.isSubmitted = true
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        this.loginAction(this.form)
+        await this.loginAction(this.form)
+        this.$router.replace({ name: 'cards' })
       }
     },
   },
