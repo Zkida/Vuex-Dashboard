@@ -12,8 +12,8 @@
       px="6"
     >
       <c-box>
+        {{ user }}
         <div class="login-form-title"><h2>Iniciar Sesión</h2></div>
-        {{ errors }}
         <form action="" @submit.prevent="login">
           <c-form-control mb="1rem">
             <c-form-label color="gray.500" for="email">Email</c-form-label>
@@ -64,13 +64,14 @@
 
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators'
-import { mapActions } from 'vuex'
+
 export default {
   head: {
     title: 'MarketColombia - Entrar',
   },
   data() {
     return {
+      user: null,
       errors: null,
       form: {
         email: '',
@@ -93,23 +94,22 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      loginAction: 'auth/login',
-    }),
     async login() {
+      this.user = this.$auth.user
       this.isSubmitted = true
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        await this.loginAction(this.form)
-          .then(() => {
-            this.$router.replace({ name: 'cards' })
-          })
-          .catch((e) => {
-            //console.log(e.response)
-            this.errors = 'Email y/o Contraseña son incorrectos' //e.response.data.message
-          })
+        this.$axios.get('/sanctum/csrf-cookie').then((response) => {
+          try {
+            this.$auth.loginWith('local', {
+              data: this.form,
+            })
+          } catch (e) {
+            console.log(e)
+          }
+        })
       }
     },
   },

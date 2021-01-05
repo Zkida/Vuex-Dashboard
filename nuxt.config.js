@@ -38,7 +38,25 @@ export default {
     '@nuxtjs/emotion',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8000',
+        endpoints: {
+          login: { url: '/api/login', method: 'post', propertyName: false },
+          logout: { url: '/api/logout', method: 'post' },
+          user: { url: '/api/user', method: 'get', propertyName: false },
+        },
+        tokenRequired: false,
+        tokenType: false,
+      },
+    },
+    localStorage: false,
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

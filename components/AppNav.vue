@@ -84,20 +84,17 @@
 
 <script lang="js">
 import AppLogo from '@/components/AppLogo'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   computed: {
-	  ...mapGetters({
-		  authenticated: 'auth/authenticated',
-		  user: 'auth/user',
-	  })
+
+	authenticated: this.$auth.loggedIn,
+	user: this.$auth.user,
+
   },
   methods: {
-	  ...mapActions({
-			logoutAction: 'auth/logout'
-		}),
 		async logout() {
-			await this.logoutAction()
+			await this.$auth.logout(/* .... */)
 			//this.$router.replace({ name: 'index' })
 		}
   }
