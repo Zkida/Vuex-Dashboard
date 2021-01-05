@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div>Cards</div>
-  </div>
+  <div></div>
 </template>
 <script>
 export default {
-  middleware: 'auth',
+  middleware({ redirect }) {
+    return redirect('/cards/dashboard')
+  },
 }
 </script>

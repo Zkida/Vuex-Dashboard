@@ -151,6 +151,7 @@
 <script lang="js">
 
 export default {
+	auth: false,
   name: 'App',
 }
 </script>

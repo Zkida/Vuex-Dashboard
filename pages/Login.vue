@@ -12,7 +12,6 @@
       px="6"
     >
       <c-box>
-        {{ user }}
         <div class="login-form-title"><h2>Iniciar Sesión</h2></div>
         <form action="" @submit.prevent="login">
           <c-form-control mb="1rem">
@@ -66,6 +65,7 @@
 import { email, required, minLength } from 'vuelidate/lib/validators'
 
 export default {
+  auth: 'guest',
   head: {
     title: 'MarketColombia - Entrar',
   },
@@ -103,9 +103,11 @@ export default {
       } else {
         this.$axios.get('/sanctum/csrf-cookie').then((response) => {
           try {
-            this.$auth.loginWith('local', {
-              data: this.form,
-            })
+            this.$auth
+              .loginWith('local', {
+                data: this.form,
+              })
+              .then(() => this.$router.replace({ name: 'cards-dashboard' }))
           } catch (e) {
             console.log(e)
           }

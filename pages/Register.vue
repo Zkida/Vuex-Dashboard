@@ -64,6 +64,7 @@
 
 <script>
 export default {
+  auth: 'guest',
   data() {
     return {
       errors: null,

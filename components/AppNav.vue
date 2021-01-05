@@ -15,16 +15,16 @@
           <li><a href="#">Inicio</a></li>
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Cómo funciona</a></li>
-          <li v-if="!authenticated">
+          <li v-if="!isAuthenticated">
             <nuxt-link to="/login" class="primary-button"
               >Iniciar sesión</nuxt-link
             >
           </li>
-          <div v-chakra ml="6" v-if="authenticated">
+          <div v-chakra ml="6" v-if="isAuthenticated">
             <li>
               <c-menu>
                 <c-menu-button fontWeight="400" right-icon="chevron-down">
-                  {{ user.email }}
+                  {{ loggedInUser.email }}
                 </c-menu-button>
                 <c-menu-list>
                   <c-menu-item>
@@ -46,7 +46,7 @@
                           d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
                         /></svg
                     ></c-box>
-                    <nuxt-link :to="{ name: 'cards' }">
+                    <nuxt-link :to="{ name: 'cards-dashboard' }">
                       Mis tarjetas</nuxt-link
                     ></c-menu-item
                   >
@@ -87,10 +87,7 @@ import AppLogo from '@/components/AppLogo'
 import { mapGetters } from 'vuex'
 export default {
   computed: {
-
-	authenticated: this.$auth.loggedIn,
-	user: this.$auth.user,
-
+	 ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
 		async logout() {
