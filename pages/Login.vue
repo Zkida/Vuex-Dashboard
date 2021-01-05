@@ -13,6 +13,7 @@
     >
       <c-box>
         <div class="login-form-title"><h2>Iniciar Sesión</h2></div>
+        {{ errors }}
         <form action="" @submit.prevent="login">
           <c-form-control mb="1rem">
             <c-form-label color="gray.500" for="email">Email</c-form-label>
@@ -70,6 +71,7 @@ export default {
   },
   data() {
     return {
+      errors: null,
       form: {
         email: '',
         password: '',
@@ -101,7 +103,13 @@ export default {
         this.submitStatus = 'ERROR'
       } else {
         await this.loginAction(this.form)
-        this.$router.replace({ name: 'cards' })
+          .then(() => {
+            this.$router.replace({ name: 'cards' })
+          })
+          .catch((e) => {
+            //console.log(e.response)
+            this.errors = 'Email y/o Contraseña son incorrectos' //e.response.data.message
+          })
       }
     },
   },

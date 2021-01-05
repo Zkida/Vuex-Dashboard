@@ -13,13 +13,15 @@
     >
       <c-box>
         <div class="login-form-title"><h2>Crear una cuenta nueva</h2></div>
-        <form action="">
+
+        <form action="" @submit.prevent="submit">
           <c-form-control mb="1rem">
             <c-form-label for="name">Nombre</c-form-label>
             <c-input
               type="text"
               id="name"
               aria-describedby="name-helper-text"
+              v-model="form.name"
             />
           </c-form-control>
           <c-form-control mb="1rem">
@@ -29,7 +31,9 @@
               id="email"
               autocomplete="username"
               aria-describedby="email-helper-text"
+              v-model="form.email"
             />
+            <div v-if="errors">{{ errors.email[0] }}</div>
           </c-form-control>
           <c-form-control mb="2rem">
             <c-form-label for="password">Contraseña</c-form-label>
@@ -38,7 +42,9 @@
               id="password"
               autocomplete="current-password"
               aria-describedby="password-helper-text"
+              v-model="form.password"
             />
+            <div v-if="errors && errors.password">{{ errors.password[0] }}</div>
           </c-form-control>
           <c-form-control>
             <c-button type="submit" color="gray.600" width="100%" size="lg">
@@ -55,3 +61,32 @@
     </c-box>
   </c-flex>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      errors: null,
+      form: {
+        name: '',
+        email: '',
+        password: '',
+      },
+      submitStatus: null,
+      isSubmitted: false,
+    }
+  },
+  methods: {
+    async submit() {
+      await this.$axios
+        .post('api/register', this.form)
+        .then(() => {
+          console.log('yes')
+        })
+        .catch((e) => {
+          this.errors = e.response.data.errors
+        })
+    },
+  },
+}
+</script>
