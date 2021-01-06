@@ -67,7 +67,7 @@
           </c-form-control>
           <c-form-control>
             <c-button
-              :isLoading="isLoading"
+              :isLoading="isSubmitted"
               :disabled="isSubmitted"
               type="submit"
               color="gray.600"
@@ -94,7 +94,6 @@ export default {
   auth: 'guest',
   data() {
     return {
-      isLoading: false,
       errors: null,
       form: {
         name: '',
@@ -122,8 +121,8 @@ export default {
   },
   methods: {
     async submit() {
-      this.isLoading = true
       this.isSubmitted = true
+      this.errors = null
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
@@ -133,23 +132,18 @@ export default {
           this.$axios
             .post('api/register', this.form)
             .then(() => {
-              try {
-                this.$auth
-                  .loginWith('local', {
-                    data: this.form,
-                  })
-                  .then(() => this.$router.replace({ name: 'cards-dashboard' }))
-              } catch (e) {
-                this.errors = e.response.data.errors
-              }
+              this.$auth
+                .loginWith('local', {
+                  data: this.form,
+                })
+                .then(() => this.$router.replace({ name: 'cards-dashboard' }))
             })
             .catch((e) => {
               this.errors = e.response.data.errors
+              this.isSubmitted = false
             })
         })
-        this.isSubmitted = false
       }
-      this.isLoading = false
     },
   },
 }

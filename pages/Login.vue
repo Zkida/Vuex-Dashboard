@@ -60,7 +60,7 @@
           </div>
           <c-form-control>
             <c-button
-              :isLoading="isLoading"
+              :isLoading="isSubmitted"
               type="submit"
               color="gray.600"
               width="100%"
@@ -93,7 +93,6 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       user: null,
       errors: null,
       form: {
@@ -119,12 +118,11 @@ export default {
   methods: {
     async login() {
       this.user = this.$auth.user
-      this.isSubmitted = true
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
-        this.isLoading = true
+        this.isSubmitted = true
         this.$axios.get('/sanctum/csrf-cookie').then((response) => {
           this.$auth
             .loginWith('local', {
@@ -135,7 +133,7 @@ export default {
               if (e.response.data.message == 'Unauthenticated.') {
                 this.errors = 'Password o contraseña incorrectos'
               }
-              this.isLoading = false
+              this.isSubmitted = false
             })
         })
       }
