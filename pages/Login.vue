@@ -23,7 +23,10 @@
               autocomplete="username"
               v-model.trim="$v.form.email.$model"
             />
-            <div class="error" v-if="$v.form.email.$invalid && isSubmitted">
+            <div
+              class="error"
+              v-if="$v.form.email.$invalid && submitStatus == 'ERROR'"
+            >
               Por favor usa un email válido.
             </div>
           </c-form-control>
@@ -38,12 +41,31 @@
               autocomplete="current-password"
               v-model.trim="$v.form.password.$model"
             />
-            <div class="error" v-if="$v.form.password.$invalid && isSubmitted">
+            <div
+              class="error"
+              v-if="$v.form.password.$invalid && submitStatus == 'ERROR'"
+            >
               La contraseña require por lo menos 6 letras.
             </div>
           </c-form-control>
+          <div
+            v-if="errors"
+            v-chakra
+            color="red.400"
+            textAlign="center"
+            mb="4"
+            mt="-1rem"
+          >
+            {{ errors }}
+          </div>
           <c-form-control>
-            <c-button type="submit" color="gray.600" width="100%" size="lg">
+            <c-button
+              :isLoading="isLoading"
+              type="submit"
+              color="gray.600"
+              width="100%"
+              size="lg"
+            >
               Entrar
             </c-button>
           </c-form-control>
@@ -71,6 +93,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       user: null,
       errors: null,
       form: {
@@ -101,16 +124,19 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
       } else {
+        this.isLoading = true
         this.$axios.get('/sanctum/csrf-cookie').then((response) => {
-          try {
-            this.$auth
-              .loginWith('local', {
-                data: this.form,
-              })
-              .then(() => this.$router.replace({ name: 'cards-dashboard' }))
-          } catch (e) {
-            console.log(e)
-          }
+          this.$auth
+            .loginWith('local', {
+              data: this.form,
+            })
+            .then(() => this.$router.replace({ name: 'cards-dashboard' }))
+            .catch((e) => {
+              if (e.response.data.message == 'Unauthenticated.') {
+                this.errors = 'Password o contraseña incorrectos'
+              }
+              this.isLoading = false
+            })
         })
       }
     },

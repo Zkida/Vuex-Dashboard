@@ -21,8 +21,14 @@
               type="text"
               id="name"
               aria-describedby="name-helper-text"
-              v-model="form.name"
+              v-model.trim="$v.form.name.$model"
             />
+            <div
+              class="error"
+              v-if="$v.form.name.$invalid && submitStatus == 'ERROR'"
+            >
+              Campo nombre es requirido.
+            </div>
           </c-form-control>
           <c-form-control mb="1rem">
             <c-form-label for="email">Email</c-form-label>
@@ -31,23 +37,43 @@
               id="email"
               autocomplete="username"
               aria-describedby="email-helper-text"
-              v-model="form.email"
+              v-model.trim="$v.form.email.$model"
             />
-            <div v-if="errors">{{ errors.email[0] }}</div>
+            <div v-if="errors" class="error">
+              {{ errors.email[0] }}
+            </div>
+            <div
+              class="error"
+              v-if="$v.form.email.$invalid && submitStatus == 'ERROR'"
+            >
+              Por favor usa un email válido.
+            </div>
           </c-form-control>
           <c-form-control mb="2rem">
             <c-form-label for="password">Contraseña</c-form-label>
             <c-input
               type="password"
               id="password"
-              autocomplete="current-password"
+              autocomplete="new-password"
               aria-describedby="password-helper-text"
-              v-model="form.password"
+              v-model.trim="$v.form.password.$model"
             />
-            <div v-if="errors && errors.password">{{ errors.password[0] }}</div>
+            <div
+              class="error"
+              v-if="$v.form.password.$invalid && submitStatus == 'ERROR'"
+            >
+              La contraseña require por lo menos 6 letras.
+            </div>
           </c-form-control>
           <c-form-control>
-            <c-button type="submit" color="gray.600" width="100%" size="lg">
+            <c-button
+              :isLoading="isLoading"
+              :disabled="isSubmitted"
+              type="submit"
+              color="gray.600"
+              width="100%"
+              size="lg"
+            >
               Registrarse
             </c-button>
           </c-form-control>
@@ -63,10 +89,12 @@
 </template>
 
 <script>
+import { email, required, minLength } from 'vuelidate/lib/validators'
 export default {
   auth: 'guest',
   data() {
     return {
+      isLoading: false,
       errors: null,
       form: {
         name: '',
@@ -77,16 +105,51 @@ export default {
       isSubmitted: false,
     }
   },
+  validations: {
+    form: {
+      name: {
+        required,
+      },
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+    },
+  },
   methods: {
     async submit() {
-      await this.$axios
-        .post('api/register', this.form)
-        .then(() => {
-          console.log('yes')
+      this.isLoading = true
+      this.isSubmitted = true
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+        this.isSubmitted = false
+      } else {
+        await this.$axios.get('/sanctum/csrf-cookie').then((response) => {
+          this.$axios
+            .post('api/register', this.form)
+            .then(() => {
+              try {
+                this.$auth
+                  .loginWith('local', {
+                    data: this.form,
+                  })
+                  .then(() => this.$router.replace({ name: 'cards-dashboard' }))
+              } catch (e) {
+                this.errors = e.response.data.errors
+              }
+            })
+            .catch((e) => {
+              this.errors = e.response.data.errors
+            })
         })
-        .catch((e) => {
-          this.errors = e.response.data.errors
-        })
+        this.isSubmitted = false
+      }
+      this.isLoading = false
     },
   },
 }

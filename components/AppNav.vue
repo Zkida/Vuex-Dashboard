@@ -12,9 +12,9 @@
       </div>
       <div class="nav-links">
         <ul v-chakra display="flex" alignItems="center">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Cómo funciona</a></li>
+          <li><nuxt-link to="/">Inicio</nuxt-link></li>
+          <li><nuxt-link :to="{ name: 'faq' }">FAQ</nuxt-link></li>
+          <li><nuxt-link :to="{ name: 'about' }">Cómo funciona</nuxt-link></li>
           <li v-if="!isAuthenticated">
             <nuxt-link to="/login" class="primary-button"
               >Iniciar sesión</nuxt-link

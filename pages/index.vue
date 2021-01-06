@@ -149,9 +149,8 @@
 </template>
 
 <script lang="js">
-
 export default {
 	auth: false,
-  name: 'App',
+	name: 'App',
 }
 </script>
