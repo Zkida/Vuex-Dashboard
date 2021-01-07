@@ -53,6 +53,10 @@ export default {
         },
         tokenRequired: false,
         tokenType: false,
+        user: {
+          property: 'data',
+          // autoFetch: true
+        },
       },
     },
     localStorage: false,
@@ -73,5 +77,11 @@ export default {
 
   chakra: {
     extendTheme: customTheme,
+  },
+
+  loadingIndicator: {
+    name: 'chasing-dots',
+    color: 'purple',
+    background: 'green',
   },
 }
