@@ -58,7 +58,9 @@ main a {
 }
 
 .nav-links a:hover,
-main a:hover {
+main a:hover,
+.card-link:hover div,
+.card-link:hover svg {
   -moz-transition: 0.2s;
   transition: 0.2s;
   color: #6877ff;
@@ -129,6 +131,7 @@ main a:hover {
 
 .footer-wrapper {
   padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 footer {
