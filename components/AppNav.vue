@@ -1,7 +1,7 @@
 <template>
-  <c-flex w="100%">
+  <div w="100%">
     <nav
-      v-chakra
+      
       display="flex"
       alignItems="center"
       justify-content="space-between"
@@ -11,7 +11,7 @@
         <app-logo />
       </div>
       <div class="nav-links">
-        <ul v-chakra display="flex" alignItems="center">
+        <ul  display="flex" alignItems="center">
           <li><nuxt-link to="/">Inicio</nuxt-link></li>
           <li><nuxt-link :to="{ name: 'faq' }">FAQ</nuxt-link></li>
           <li><nuxt-link :to="{ name: 'about' }">Cómo funciona</nuxt-link></li>
@@ -20,7 +20,7 @@
               >Iniciar sesión</nuxt-link
             >
           </li>
-          <div v-chakra ml="6" v-if="isAuthenticated">
+          <div  ml="6" v-if="isAuthenticated">
             <li>
               <c-menu>
                 <c-menu-button fontWeight="400" right-icon="chevron-down">
@@ -28,9 +28,9 @@
                 </c-menu-button>
                 <c-menu-list>
                   <c-menu-item>
-                    <c-box
+                    <div
                       ><svg
-                        v-chakra
+                        
                         w="20px"
                         color="indigo.200"
                         mr="15px"
@@ -45,15 +45,15 @@
                           stroke-width="2"
                           d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
                         /></svg
-                    ></c-box>
+                    ></div>
                     <nuxt-link :to="{ name: 'cards-dashboard' }">
                       Mis tarjetas</nuxt-link
                     ></c-menu-item
                   >
                   <c-menu-item as="a" href="#" @click.prevent="logout"
-                    ><c-box>
+                    ><div>
                       <svg
-                        v-chakra
+                        
                         w="20px"
                         color="indigo.200"
                         mr="15px"
@@ -69,7 +69,7 @@
                           d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                         />
                       </svg>
-                    </c-box>
+                    </div>
                     Cerrar sesión
                   </c-menu-item>
                 </c-menu-list>
@@ -79,7 +79,7 @@
         </ul>
       </div>
     </nav>
-  </c-flex>
+  </div>
 </template>
 
 <script lang="js">

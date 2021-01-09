@@ -1,36 +1,33 @@
 <template>
   <div class="container">
-    <c-flex alignItems="center" class="home-hero">
-      <c-flex w="60%" flexDirection="column">
-        <h1 v-chakra fontSize="48px" fontWeight="bold" mb="4">
+    <vs-button> Hello World Vuesax + Nuxtjs </vs-button>
+    <div>
+      <div>
+        <h1>
           El mundo esta cambiando. Ofrece una
-          <span v-chakra color="brand.primary"
-            >nueva experiencia a tus clientes.</span
-          >
+          <span>nueva experiencia a tus clientes.</span>
         </h1>
         <p>
           Súper rápido, fácil y sin contácto. Crea tarjetas virtuales de código
           QR para negocios más seguros y es completamente gratis.
         </p>
-        <a href="#" class="primary-button">Crea tu tarjeta virtual</a>
-      </c-flex>
-    </c-flex>
-    <c-flex w="60%" flexDirection="column" class="section">
-      <h2 class="title">
+        <a>Crea tu tarjeta virtual</a>
+      </div>
+    </div>
+    <div>
+      <h2>
         Adiós a las tarjetas físicas, <br />
-        <span v-chakra color="brand.primary"
-          >hola a las tarjetas virtuales.</span
-        >
+        <span>hola a las tarjetas virtuales.</span>
       </h2>
-      <p class="description">
+      <p>
         Tu tarjeta virtual puede ser vista desde cualquier dispositivo y ¡Sin
         descargar ninguna app! Tus clientes acceden instantáneamente a tu
         tarjeta virtual escaneando el código QR desde su celular.
       </p>
       <p>Funciona en:</p>
-      <c-flex>
-        <div class="platforms-container">
-          <div class="platform-item">
+      <div>
+        <div>
+          <div>
             <svg
               width="42"
               height="42"
@@ -58,7 +55,7 @@
               <p>Safari</p>
             </div>
           </div>
-          <div class="platform-item">
+          <div>
             <svg
               width="42"
               height="42"
@@ -143,8 +140,8 @@
             </div>
           </div>
         </div>
-      </c-flex>
-    </c-flex>
+      </div>
+    </div>
   </div>
 </template>
 

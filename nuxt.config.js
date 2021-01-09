@@ -1,4 +1,3 @@
-import customTheme from './custom-theme.js'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -19,10 +18,10 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['@/assets/css/main.css'],
+  css: ['@/assets/css/main.css', 'vuesax/dist/vuesax.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/vuelidate'],
+  plugins: ['~/plugins/vuelidate', '@/plugins/vuesax'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -32,8 +31,6 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/chakra
-    '@chakra-ui/nuxt',
     // https://go.nuxtjs.dev/emotion
     '@nuxtjs/emotion',
     // https://go.nuxtjs.dev/axios
@@ -74,10 +71,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
-
-  chakra: {
-    extendTheme: customTheme,
-  },
 
   loadingIndicator: {
     name: 'chasing-dots',

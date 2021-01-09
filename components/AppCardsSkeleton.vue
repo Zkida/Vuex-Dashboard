@@ -1,5 +1,5 @@
 <template>
-  <div v-chakra my="5rem">
+  <div  my="5rem">
     <template>
       <c-grid
         w="100%"

@@ -1,25 +1,14 @@
 <template>
-  <c-flex flexDirection="column" mt="5rem">
-    <c-box
-      mx="auto"
-      maxW="460px"
-      width="100%"
-      border-width="1px"
-      rounded="lg"
-      overflow="hidden"
-      class="shadow-container"
-      py="3rem"
-      px="6"
-    >
-      <c-box>
-        <div class="login-form-title"><h2>Iniciar Sesión</h2></div>
+  <div>
+    <div>
+      <div>
+        <div><h2>Iniciar Sesión</h2></div>
         <form action="" @submit.prevent="login">
-          <c-form-control mb="1rem">
-            <c-form-label color="gray.500" for="email">Email</c-form-label>
-            <c-input
+          <div>
+            <label for="email">Email</label>
+            <input
               type="email"
               id="email"
-              aria-describedby="email-helper-text"
               autocomplete="username"
               v-model.trim="$v.form.email.$model"
             />
@@ -29,15 +18,12 @@
             >
               Por favor usa un email válido.
             </div>
-          </c-form-control>
-          <c-form-control mb="2rem">
-            <c-form-label color="gray.500" for="password"
-              >Contraseña</c-form-label
-            >
-            <c-input
+          </div>
+          <div>
+            <label for="password">Contraseña</label>
+            <input
               type="password"
               id="password"
-              aria-describedby="password-helper-text"
               autocomplete="current-password"
               v-model.trim="$v.form.password.$model"
             />
@@ -47,40 +33,25 @@
             >
               La contraseña require por lo menos 6 letras.
             </div>
-          </c-form-control>
-          <div
-            v-if="errors"
-            v-chakra
-            color="red.400"
-            textAlign="center"
-            mb="4"
-            mt="-1rem"
-          >
+          </div>
+          <div v-if="errors">
             {{ errors }}
           </div>
-          <c-form-control>
-            <c-button
-              :isLoading="isSubmitted"
-              type="submit"
-              color="gray.600"
-              width="100%"
-              size="lg"
-            >
-              Entrar
-            </c-button>
-          </c-form-control>
-          <c-box mt="1rem" textAlign="center">
+          <div>
+            <button :isLoading="isSubmitted" type="submit">Entrar</button>
+          </div>
+          <div>
             <a href="#">Olvidó la Contraseña?</a>
-          </c-box>
+          </div>
         </form>
-      </c-box>
-    </c-box>
-    <c-box mt="1rem" textAlign="center">
+      </div>
+    </div>
+    <div>
       <c-link as="nuxt-link" color="brand.primary" to="/register"
         >Crear una cuenta nueva</c-link
       >
-    </c-box>
-  </c-flex>
+    </div>
+  </div>
 </template>
 
 <script>

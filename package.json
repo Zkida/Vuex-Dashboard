@@ -15,7 +15,8 @@
     "@nuxtjs/emotion": "^0.1.0",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "vuelidate": "^0.7.6"
+    "vuelidate": "^0.7.6",
+    "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.12.0",

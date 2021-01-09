@@ -1,42 +1,26 @@
 <template>
-  <c-flex flexDirection="column" mt="5rem">
-    <c-box
-      mx="auto"
-      maxW="460px"
-      width="100%"
-      border-width="1px"
-      rounded="lg"
-      overflow="hidden"
-      class="shadow-container"
-      py="3rem"
-      px="6"
-    >
-      <c-box>
+  <div>
+    <div class="shadow-container">
+      <div>
         <div class="login-form-title"><h2>Crear una cuenta nueva</h2></div>
 
         <form action="" @submit.prevent="submit">
-          <c-form-control mb="1rem">
-            <c-form-label for="name">Nombre</c-form-label>
-            <c-input
-              type="text"
-              id="name"
-              aria-describedby="name-helper-text"
-              v-model.trim="$v.form.name.$model"
-            />
+          <div>
+            <label for="name">Nombre</label>
+            <input type="text" id="name" v-model.trim="$v.form.name.$model" />
             <div
               class="error"
               v-if="$v.form.name.$invalid && submitStatus == 'ERROR'"
             >
               Campo nombre es requirido.
             </div>
-          </c-form-control>
-          <c-form-control mb="1rem">
-            <c-form-label for="email">Email</c-form-label>
-            <c-input
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input
               type="email"
               id="email"
               autocomplete="username"
-              aria-describedby="email-helper-text"
               v-model.trim="$v.form.email.$model"
             />
             <div v-if="errors" class="error">
@@ -48,14 +32,13 @@
             >
               Por favor usa un email válido.
             </div>
-          </c-form-control>
-          <c-form-control mb="2rem">
-            <c-form-label for="password">Contraseña</c-form-label>
-            <c-input
+          </div>
+          <div>
+            <label for="password">Contraseña</label>
+            <input
               type="password"
               id="password"
               autocomplete="new-password"
-              aria-describedby="password-helper-text"
               v-model.trim="$v.form.password.$model"
             />
             <div
@@ -64,28 +47,25 @@
             >
               La contraseña require por lo menos 6 letras.
             </div>
-          </c-form-control>
-          <c-form-control>
-            <c-button
+          </div>
+          <div>
+            <button
               :isLoading="isSubmitted"
               :disabled="isSubmitted"
               type="submit"
-              color="gray.600"
-              width="100%"
-              size="lg"
             >
               Registrarse
-            </c-button>
-          </c-form-control>
+            </button>
+          </div>
         </form>
-      </c-box>
-    </c-box>
-    <c-box mt="1rem" textAlign="center">
+      </div>
+    </div>
+    <div>
       <c-link as="nuxt-link" color="brand.primary" to="/login"
         >Ya tiene una cuenta?</c-link
       >
-    </c-box>
-  </c-flex>
+    </div>
+  </div>
 </template>
 
 <script>
