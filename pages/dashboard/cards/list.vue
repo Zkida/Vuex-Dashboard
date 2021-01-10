@@ -1,13 +1,26 @@
 <template>
   <div>
-    <div v-if="$fetchState.pending">
-      <app-cards-skeleton />
+    <div v-if="$fetchState.pending" class="flex text-gray">
+      Cargando datos...
     </div>
     <p v-else-if="$fetchState.error">An error occurred :(</p>
     <div v-else>
       <template v-if="cards.length">
-        <div>
-          <app-card v-for="card in cards" :key="card.uuid" :card="card" />
+        <div class="grid">
+          <vs-row class="grid-row">
+            <vs-col
+              sm="6"
+              lg="4"
+              v-for="card in cards"
+              :key="card.uuid"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              w="12"
+            >
+              <app-card :card="card" />
+            </vs-col>
+          </vs-row>
         </div>
       </template>
     </div>
@@ -15,13 +28,9 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import AppCardSkeleton from '@/components/AppCardSkeleton'
-import AppCard from '@/components/AppCard'
 export default {
+  layout: 'main',
   middleware: 'auth',
-  components: {
-    AppCard,
-  },
   computed: {
     ...mapGetters({
       cards: 'cards/cards',

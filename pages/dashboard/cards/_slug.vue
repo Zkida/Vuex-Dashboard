@@ -7,13 +7,12 @@
     <div>
       <div>{{ card }}</div>
     </div>
-    <button @click="$fetch">Refresh</button>
   </div>
 </template>
 
 <script>
-import AppCardSkeleton from '@/components/AppCardSkeleton'
 export default {
+  layout: 'main',
   data() {
     return {
       card: {},
