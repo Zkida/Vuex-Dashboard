@@ -47,9 +47,7 @@
       </div>
     </div>
     <div>
-      <c-link as="nuxt-link" color="brand.primary" to="/register"
-        >Crear una cuenta nueva</c-link
-      >
+      <nuxt-link to="/register">Crear una cuenta nueva</nuxt-link>
     </div>
   </div>
 </template>
@@ -99,7 +97,7 @@ export default {
             .loginWith('local', {
               data: this.form,
             })
-            .then(() => this.$router.replace({ name: 'cards-dashboard' }))
+            .then(() => this.$router.replace({ name: 'dashboard' }))
             .catch((e) => {
               if (e.response.data.message == 'Unauthenticated.') {
                 this.errors = 'Password o contraseña incorrectos'

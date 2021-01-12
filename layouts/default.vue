@@ -1,17 +1,12 @@
 <template>
   <div class="container">
-    <CThemeProvider>
-      <CColorModeProvider>
-        <CBox font-family="body">
-          <CReset />
-          <app-nav />
-          <CBox as="main">
-            <Nuxt />
-          </CBox>
-          <app-footer />
-        </CBox>
-      </CColorModeProvider>
-    </CThemeProvider>
+    <div font-family="body">
+      <app-nav />
+      <div as="main">
+        <Nuxt />
+      </div>
+      <app-footer />
+    </div>
   </div>
 </template>
 <script>

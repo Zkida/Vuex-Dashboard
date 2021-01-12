@@ -1,3 +1,4 @@
+// import customPlugin from '@/store/custom-plugin.js'
 export const getters = {
   isAuthenticated(state) {
     return state.auth.loggedIn
@@ -7,3 +8,5 @@ export const getters = {
     return state.auth.user
   },
 }
+
+//export const plugins = [customPlugin]

@@ -126,6 +126,76 @@ body .vs-row {
   position: relative;
 }
 
+.mk-card {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(44, 62, 80, 1);
+  width: 100%;
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.mk-card-inner {
+  padding: 15px;
+}
+
+body a .wizard-icon {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.vue-form-wizard .wizard-title {
+  font-size: 1.2rem;
+}
+
+body .vue-form-wizard .category {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.error {
+  color: #ff4657;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: transform 0.35s, opacity 0.28s ease-in-out;

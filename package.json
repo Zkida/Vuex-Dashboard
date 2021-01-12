@@ -16,6 +16,8 @@
     "boxicons": "^2.0.7",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
+    "v-mask": "^2.2.3",
+    "vue-form-wizard": "^0.8.4",
     "vuelidate": "^0.7.6",
     "vuesax": "^4.0.1-alpha.25"
   },
