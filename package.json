@@ -15,8 +15,13 @@
     "autoprefixer": "^9.8.6",
     "boxicons": "^2.0.7",
     "core-js": "^3.6.5",
+    "filepond": "^4.25.1",
+    "filepond-plugin-file-validate-size": "^2.2.2",
+    "filepond-plugin-file-validate-type": "^1.2.5",
+    "filepond-plugin-image-preview": "^4.6.4",
     "nuxt": "^2.14.6",
     "v-mask": "^2.2.3",
+    "vue-filepond": "^6.0.3",
     "vue-form-wizard": "^0.8.4",
     "vuelidate": "^0.7.6",
     "vuesax": "^4.0.1-alpha.25"

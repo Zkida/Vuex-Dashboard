@@ -29,6 +29,7 @@ export default {
     '~/plugins/vuelidate',
     '@/plugins/vuesax',
     '@/plugins/vuemask',
+    { src: '@/plugins/file-pond-plugin.js', ssr: false },
     //{ src: '@/plugins/logout-handler', ssr: false },
   ],
 

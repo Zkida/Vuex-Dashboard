@@ -1,10 +1,10 @@
 <template>
   <div>
     <vs-row>
-      {{ submitStatus }}
       <vs-col w="12">
         <div class="form-group">
           <label for="logo">Logo o imagen de perfil</label>
+          <app-logo-loader />
         </div>
         <div class="form-group">
           <label for="name">Nombre de tu tarjeta virtual</label>
@@ -83,7 +83,6 @@ export default {
     return {
       isValid: true,
       form: {
-        logo: '',
         name: '',
         first_name: '',
         last_name: '',
