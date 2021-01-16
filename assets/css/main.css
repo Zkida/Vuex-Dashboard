@@ -196,6 +196,68 @@ body .vue-form-wizard .category {
   color: #ff4657;
 }
 
+/* CARD STYLE */
+
+.qr-card {
+  background: #fff;
+  padding: 1.3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.qr-data {
+  display: flex;
+  width: 50%;
+  max-width: 50%;
+  align-items: center;
+}
+
+.qr-link {
+  margin-left: auto;
+}
+
+.qr-name,
+.qr-metadata .summary,
+.qr-date {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.qr-name h3,
+.qr-card p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qr-name i,
+.qr-metadata .summary i,
+.qr-date i {
+  font-size: 1.8rem;
+  margin-right: 1rem;
+  color: #d1d5da;
+}
+
+.qr-metadata {
+  color: #6a7380;
+}
+
+.qr-card .meta {
+  max-width: 25rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+
+.qr-code {
+  width: 120px;
+  height: 120px;
+  background-color: #80bdff;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: transform 0.35s, opacity 0.28s ease-in-out;
