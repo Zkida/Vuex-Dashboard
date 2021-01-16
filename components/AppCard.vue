@@ -37,16 +37,16 @@
     <div class="qr-actions">
       <vs-button flat block square> Descargar </vs-button>
       <div class="actions-wrapper">
-        <vs-tooltip>
-          <vs-button icon relief><i class="bx bx-edit"></i></vs-button>
-          <template #tooltip> Editar tarjeta QR </template>
-        </vs-tooltip>
-        <vs-tooltip>
-          <vs-button size="small" icon color="danger" border
-            ><i class="bx bxs-trash"></i
-          ></vs-button>
-          <template #tooltip> Eliminar tarjeta QR </template>
-        </vs-tooltip>
+        <vs-button
+          icon
+          relief
+          :to="{ name: 'dashboard-cards-slug', params: { slug: card.uuid } }"
+          ><i class="bx bx-edit"></i
+        ></vs-button>
+
+        <vs-button size="small" icon color="danger" border
+          ><i class="bx bxs-trash"></i
+        ></vs-button>
       </div>
     </div>
   </div>
