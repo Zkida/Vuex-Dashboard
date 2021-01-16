@@ -30,7 +30,7 @@ export default {
     '@/plugins/vuesax',
     '@/plugins/vuemask',
     { src: '@/plugins/file-pond-plugin.js', ssr: false },
-    //{ src: '@/plugins/logout-handler', ssr: false },
+    { src: '@/plugins/qr-code.js', ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

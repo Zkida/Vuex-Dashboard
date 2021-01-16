@@ -237,7 +237,7 @@ body .vue-form-wizard .category {
 .qr-name i,
 .qr-metadata .summary i,
 .qr-date i {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-right: 1rem;
   color: #d1d5da;
 }
@@ -255,7 +255,22 @@ body .vue-form-wizard .category {
 .qr-code {
   width: 120px;
   height: 120px;
-  background-color: #80bdff;
+}
+
+.qr-actions {
+  width: 13rem;
+}
+
+.qr-actions:hover .actions-wrapper {
+  opacity: 1;
+}
+
+.actions-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  opacity: 0;
 }
 
 .page-enter-active,

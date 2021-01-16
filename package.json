@@ -20,6 +20,7 @@
     "filepond-plugin-file-validate-type": "^1.2.5",
     "filepond-plugin-image-preview": "^4.6.4",
     "nuxt": "^2.14.6",
+    "qrcode.vue": "^1.7.0",
     "v-mask": "^2.2.3",
     "vue-filepond": "^6.0.3",
     "vue-form-wizard": "^0.8.4",

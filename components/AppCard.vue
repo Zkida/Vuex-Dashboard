@@ -27,18 +27,47 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="qr-code"></div>
-    <div class="qr-actions">BUTTON</div>
+    <div class="qr-code">
+      <qrcode-vue
+        :value="baseURL + card.uuid"
+        size="120"
+        level="H"
+      ></qrcode-vue>
+    </div>
+    <div class="qr-actions">
+      <vs-button flat block square> Descargar </vs-button>
+      <div class="actions-wrapper">
+        <vs-tooltip>
+          <vs-button icon relief><i class="bx bx-edit"></i></vs-button>
+          <template #tooltip> Editar tarjeta QR </template>
+        </vs-tooltip>
+        <vs-tooltip>
+          <vs-button size="small" icon color="danger" border
+            ><i class="bx bxs-trash"></i
+          ></vs-button>
+          <template #tooltip> Eliminar tarjeta QR </template>
+        </vs-tooltip>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
 export default {
   props: {
     card: {
       required: true,
       type: Object,
     },
+  },
+  data() {
+    return {
+      baseURL: 'http://localhost:300/public/',
+    }
+  },
+  components: {
+    QrcodeVue,
   },
 }
 </script>
