@@ -29,6 +29,7 @@ export default {
     '~/plugins/vuelidate',
     '@/plugins/vuesax',
     '@/plugins/vuemask',
+    '@/plugins/element-ui',
     { src: '@/plugins/file-pond-plugin.js', ssr: false },
     { src: '@/plugins/qr-code.js', ssr: false },
   ],

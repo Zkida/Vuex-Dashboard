@@ -15,6 +15,7 @@
     "autoprefixer": "^9.8.6",
     "boxicons": "^2.0.7",
     "core-js": "^3.6.5",
+    "element-ui": "^2.15.0",
     "filepond": "^4.25.1",
     "filepond-plugin-file-validate-size": "^2.2.2",
     "filepond-plugin-file-validate-type": "^1.2.5",

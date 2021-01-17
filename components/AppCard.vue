@@ -37,12 +37,10 @@
     <div class="qr-actions">
       <vs-button flat block square> Descargar </vs-button>
       <div class="actions-wrapper">
-        <vs-button
-          icon
-          relief
+        <nuxt-link
           :to="{ name: 'dashboard-cards-slug', params: { slug: card.uuid } }"
           ><i class="bx bx-edit"></i
-        ></vs-button>
+        ></nuxt-link>
 
         <vs-button size="small" icon color="danger" border
           ><i class="bx bxs-trash"></i

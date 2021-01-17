@@ -1,59 +1,149 @@
 <template>
   <vs-row>
-    <vs-col offset="2" w="8">
-      <div class="mk-card">
-        <div class="mk-card-inner">
-          <form-wizard
-            color="#195CFF"
-            title="Nueva tarjeta digital"
-            subtitle="Por favor completa el siguiente formulario"
-            back-button-text="Regresar"
-            next-button-text="Siguiente"
-            finish-button-text="Finalizar"
-          >
-            <tab-content
-              :before-change="() => validateStep('step1')"
-              title="Datos generales"
-            >
-              <app-form-step-one ref="step1" />
-            </tab-content>
-            <tab-content title="Información adicional">
-              <app-form-step-two />
-            </tab-content>
-            <tab-content title="Guardar tarjeta">
-              Yuhuuu! This seems pretty damn simple
-            </tab-content>
-          </form-wizard>
-        </div>
-      </div>
+    <vs-col w="7">
+      <el-collapse>
+        <el-collapse-item title="Logo y diseño" name="1" class="mk-card">
+          <div class="mk-card-inner">
+            <div class="design-group">
+              <div class="colors-groups">
+                <div class="form-group">
+                  <div class="color-group">
+                    <span>Color principal</span>
+                    <el-color-picker
+                      v-model="inputData.header_background"
+                    ></el-color-picker>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="color-group">
+                    <span>Color texto</span>
+                    <el-color-picker
+                      v-model="inputData.header_text"
+                    ></el-color-picker>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="logo">Logo</label>
+                <el-upload
+                  id="logo"
+                  ref="upload"
+                  class="avatar-uploader"
+                  action="#"
+                  :show-file-list="false"
+                  :on-success="handleAvatarUpload"
+                  :auto-upload="false"
+                  :on-change="beforeAvatarUpload"
+                >
+                  <img
+                    v-if="inputData.image_url"
+                    :src="inputData.image_url"
+                    class="avatar"
+                  />
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </div>
+            </div>
+          </div>
+        </el-collapse-item>
+        <el-collapse-item title="Tu información" name="2" class="mk-card">
+          <div class="mk-card-inner">
+            <app-form-step-one :inputData.sync="inputData" ref="step1" />
+            <app-form-step-two :inputData.sync="inputData" ref="step2" />
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+      <a href="#" @click="test()">TEST</a>
+      <a href="#" @click="validateStep('step2')">VALIDATE</a>
+    </vs-col>
+    <vs-col w="5">
+      <app-card-preview :inputData.sync="inputData" />
     </vs-col>
   </vs-row>
 </template>
 
 <script>
+import { Collapse, CollapseItem } from 'element-ui'
 import { mapGetters } from 'vuex'
-import AppFormStepOne from '@/components/form/AppFormStepOne'
-//local registration
-import { FormWizard, TabContent } from 'vue-form-wizard'
-import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import AppFormStepTwo from '~/components/form/AppFormStepTwo.vue'
+import AppFormStepOne from '~/components/form/AppFormStepOne.vue'
+import AppCardPreview from '~/components/AppCardPreview.vue'
 
 export default {
   layout: 'main',
+  data() {
+    return {
+      dialogVisible: false,
+      disabled: false,
+      inputData: {
+        image_url: '',
+        header_background: '',
+        header_text: '',
+        name: '',
+        first_name: '',
+        last_name: '',
+        number: '',
+        email: '',
+        company_name: '',
+      },
+    }
+  },
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   //component code
   components: {
-    FormWizard,
-    TabContent,
     AppFormStepOne,
     AppFormStepTwo,
+    Collapse,
+    CollapseItem,
   },
   methods: {
+    test() {
+      console.log('lil')
+      this.$refs.upload.submit()
+    },
     validateStep(name) {
       var refToValidate = this.$refs[name]
       return refToValidate.validate()
+    },
+    handleRemove(file) {
+      console.log(file)
+    },
+    handleAvatarUpload(res, file) {
+      this.inputData.image_url = URL.createObjectURL(file.raw)
+      this.dialogVisible = true
+
+      var formData = new FormData()
+      formData.append('file', file.raw)
+      this.$axios
+        .post('/api/file/store', formData)
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((e) => {
+          console.log(e.response)
+        })
+    },
+    beforeAvatarUpload(file) {
+      console.log(file.type)
+      const isJPG =
+        file.raw.type === 'image/jpeg' || file.raw.type === 'image/png'
+      const isLt2M = file.raw.size / 1024 / 1024 < 2
+
+      if (!isJPG) {
+        this.$message.error('Los formatos permitidos son JPG o PNG!')
+        return
+      }
+      if (!isLt2M) {
+        this.$message.error('La imagen no debe exceder los 2MB!')
+        return
+      }
+      this.inputData.image_url = URL.createObjectURL(file.raw)
+      return isJPG && isLt2M
+    },
+    handleDownload(file) {
+      console.log(file)
     },
   },
 }
