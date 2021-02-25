@@ -1,4 +1,4 @@
-# jikxdigitalsite
+# Vuex dashboard that consumes data from a Laravel API
 
 ## Build Setup
 
