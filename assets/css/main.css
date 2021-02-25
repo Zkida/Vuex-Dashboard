@@ -165,6 +165,7 @@ body a .wizard-icon {
 label {
   margin-bottom: 0.5rem;
   display: block;
+  color: #000;
 }
 
 .form-row {
@@ -227,14 +228,15 @@ label {
 
 .card-info {
   margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
-.color-group {
+.color-content {
   display: flex;
   align-items: center;
 }
 
-.color-group > span {
+.color-content > span {
   min-width: 150px;
   margin-right: 1rem;
 }
@@ -244,9 +246,14 @@ label {
   flex-direction: row-reverse;
 }
 
-.design-group > div {
-  flex-basis: 50%;
+.design-group .color-group {
+  flex-basis: 80%;
+  padding-left: 3rem;
   box-sizing: border-box;
+}
+
+.color-content {
+  margin-bottom: 1rem;
 }
 
 .card-image {

@@ -2,19 +2,6 @@
   <div>
     <vs-row>
       <vs-col w="12">
-        <div class="form-group">
-          <label for="name">Nombre de tu tarjeta virtual</label>
-          <input
-            v-model.trim="$v.inputData.name.$model"
-            class="form-control"
-            type="text"
-            name="name"
-            id="name"
-          />
-          <div class="error" v-if="$v.inputData.name.$invalid && !isValid">
-            Nombre de la tarjeta es requerido.
-          </div>
-        </div>
         <div class="form-row">
           <div class="form-group">
             <label for="first_name">Nombres</label>
@@ -93,9 +80,6 @@ export default {
   },
   validations: {
     inputData: {
-      name: {
-        required,
-      },
       first_name: {
         required,
       },

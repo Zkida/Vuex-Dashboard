@@ -4,26 +4,33 @@
       <el-collapse>
         <el-collapse-item title="Logo y diseño" name="1" class="mk-card">
           <div class="mk-card-inner">
+            <div class="form-group">
+              <label for="name">Nombre de tu tarjeta virtual</label>
+              <input
+                v-model="inputData.name"
+                class="form-control"
+                type="text"
+                name="name"
+                id="name"
+              />
+            </div>
             <div class="design-group">
-              <div class="colors-groups">
-                <div class="form-group">
-                  <div class="color-group">
-                    <span>Color principal</span>
-                    <el-color-picker
-                      v-model="inputData.header_background"
-                    ></el-color-picker>
-                  </div>
+              <div class="color-group">
+                <label>Branding</label>
+                <div class="color-content">
+                  <span>Color principal</span>
+                  <el-color-picker
+                    v-model="inputData.header_background"
+                  ></el-color-picker>
                 </div>
-                <div class="form-group">
-                  <div class="color-group">
-                    <span>Color texto</span>
-                    <el-color-picker
-                      v-model="inputData.header_text"
-                    ></el-color-picker>
-                  </div>
+                <div class="color-content">
+                  <span>Color texto</span>
+                  <el-color-picker
+                    v-model="inputData.header_text"
+                  ></el-color-picker>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="file-group">
                 <label for="logo">Logo</label>
                 <el-upload
                   id="logo"
@@ -77,8 +84,8 @@ export default {
       disabled: false,
       inputData: {
         image_url: '',
-        header_background: '',
-        header_text: '',
+        header_background: '#312E81',
+        header_text: '#818CF8',
         name: '',
         first_name: '',
         last_name: '',
